@@ -22,3 +22,13 @@
     transform: scaleX(1);
     /*transform-origin: bottom left;*/
 }
+
+.nb-background-color {      /* navbar background color */
+    background-color: #023E8A !important;
+}
+
+.nbMenuItem {               /* navbar link text properties*/
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
