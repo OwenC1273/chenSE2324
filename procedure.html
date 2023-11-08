@@ -47,64 +47,92 @@
     </nav>
 
 
-    <!-- How to use the sensor -->
-    <section class="procedure">
-        <div class="container">
-            <br>
-            <div class="text-center">
-                <h1>Procedure</h1>
-                <h2>Using a numbered list, describe your procedure w/ pictures</h2>
-            </div>
-            <hr><br>
+    <!-- How to Use the Sensor -->
+  <section class="procedure">
+    <div class="container">
+      <br> <!-- Line break -->
+      <div class="text-center">
+        <h1 >Procedure</h1>
+        <h2>Using a numbered list, describe your procedure (incude pictures)</h2>
+      </div>
+      
+      <hr><br> <!-- Horizontal line and line break -->
 
-            <table class="table table-hover table-borderless">
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <h2>Step 1</h2>
-                        </th>
-                        <td><p class="howTo">Start Python Flask server</p></td>
-                        <td class="text-center"><img src="images/pythonLogo.png" alt="Python Logo"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <h2>Step 2</h2>
-                        </th>
-                        <td><p class="howTo">Power circuit on. Sr-04/05 transmits data to Nano icon-white</p></td>
-                        <td class="text-center"><img src="images/rangeFinderTP.png" alt="SR04 Range Finder"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <h2>Step 3</h2>
-                        </th>
-                        <td><p class="howTo">Nano IoT connects to PC via Wi-Fi and sends data to Arduino program.</p></td>
-                        <td class="text-center"><img src="images/nano33IoT3.png" alt="Nano 33 IoT"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <h2>Step 4</h2>
-                        </th>
-                        <td><p class="howTo">Arduino and Flask server communicate via HTTP request protocol.</p></td>
-                        <td class="text-center"><img src="images/arduinoLogo.png" alt="Arduino Logo"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <h2>Step 5</h2>
-                        </th>
-                        <td><p class="howTo">Flask connects to Firebase and sends data for storage.</p></td>
-                        <td class="text-center"><img src="images/firebaseLogo.png" alt="Firebase Logo"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    
+      <table class="table table-hover text-center table-light table-bordered border-dark-subtle">
+        <thead>
+          <tr class="table-primary">
+            <th><h3>Step</h3></th>
+            <th><h3>Description</h3></th>
+            <th><h3>Image</h3></th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr class="align-middle">
+            <th scope="row" class="table-secondary">
+              <h3>1</h3>
+            </th> <!-- scope="row" specifies header cell is the header for a row -->
+            <td>
+              <h3 class="text-start">Set up a controlled enviornment for the Echeveria Lola plant.</h3>
+                <ul>
+                  <li><h5 class="text-start">10 hours of daylight.</h5></li>
+                  <li><h5 class="text-start">Average room temperature of 21 degrees Celsius.</h5></li>
+                  <li><h5 class="text-start">100mL of water every day.</h5></li>
+                  <li><h5 class="text-start">Two separate plants with different levels of nitrogen fertilizer.</h5></li>
+                </ul>
+            </td>
+            <td class="text-center"><img src="images/Screenshot 2023-09-26 224147.png" alt="Python Logo"></td>
+          </tr>
+          <tr class="align-middle">
+            <th scope="row" class="table-secondary">
+              <h3>2</h3>
+            </th>
+            <td>
+              <h3 class="text-start">Give respective levels of nitrogen fertilizer every 3 days to the two plants.
+                </h3>
+                <ul>
+                  <li><h5 class="text-start">2, 4, 8, and 16 ml of nitrogen fertilizer.</h5></li>
+                  <li><h5 class="text-start">Gently twist off a leaf before adding the fertilizer that day.</h5></li>
+                </ul>
+            </td>
+            <td class="text-center"><img src="images/Screenshot 2023-09-26 224314.png" alt="SRO4 Range Finder"></td>
+          </tr>
+          <tr class="align-middle">
+            <th scope="row" class="table-secondary">
+              <h3>3</h3>
+            </th>
+            <td>
+              <h3 class="text-start">Place the leaf on a microscope slide horizontally 2 cm away from the table.
+              </h3>
+              <ul>
+                <li><h5 class="text-start">.05 mL water droplet placed on the leaf with a serological pipette.</h5></li>
+                <li><h5 class="text-start">Take a picture with a camera leveled horizontally to the leaf and against the table.</h5></li>
+                <li><h5 class="text-start">Do this on both the abaxial (bottom) and adaxial (top) side of the leaf.</h5></li>
+              </ul>
+            </td>
+            <td class="text-center"><img src="images/Screenshot 2023-09-26 224350.png" alt="Nano 33 IoT"></td>
+          </tr>
+          <tr class="align-middle">
+            <th scope="row" class="table-secondary">
+              <h3>4</h3>
+            </th>
+            <td>
+              <h3 class="text-start">Analyze the image of the water droplet picture</h3>
+              <ul>
+                <li><h5 class="text-start">Separate the pictures based on the adaxial/abaxial side and nitrogen levels.</h5></li>
+                <li><h5 class="text-start">Analyze the pictures in the program ImageJ.</h5></li>
+              </ul>
+            </td>
+            <td class="text-center"><img src="images/Screenshot 2023-09-26 224440.png" alt="Arduino Logo"></td>
+        </tbody>
+      </table>
+    </div>
+  </section>    
    
 
     <!-- Footer (requires Bootstrap icons CSS)-->
     <footer class="p-5 footer text-light text-center position-relative">
        <div class="container">
-            <p class="lead">Copyright &copy; SE 2023 Bootstrap Demo</p> 
+            <p class="lead">Copyright &copy; SE 2023 Bootstrap Class</p> 
             <a href="#" class="position-absolute bottom-0 end-0 p-5">
                 <i class="bi bi-arrow-up-circle h2 icon-white"></i>
             </a>
