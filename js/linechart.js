@@ -3,8 +3,8 @@
 */
 
 async function getData() {
-    // const response = await fetch('../data/research-data.csv'); //.. moves up 1 folder data directory for local dev
-    const response = await fetch('/CHENSE2324/research-data.csv'); // data directory for GitHub pages
+    const response = await fetch('../data/research-data.csv'); //.. moves up 1 folder data directory for local dev
+    // const response = await fetch('/CHENSE2324/research-data.csv'); // data directory for GitHub pages
     const data = await response.text();     // CSV is in TEXT format
     console.log(data); 
 
