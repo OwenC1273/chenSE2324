@@ -7,22 +7,18 @@ async function getData() {
     const data = await response.text();     // CSV is in TEXT format
     console.log(data); 
 
-    const xYears = []; // x-axis labels = years values
-    const yTemps = []; // y-axis global temp values
-    const yNHtemps = []; // y-axis NJ temp values
-    const ySHtemps = []; // y-axis SH temp values
+    const xTrials = [];     // x-axis labels = trials values
+    const zeroADA = [];     // y-axis contact angle based on zero mL of nitrogen for adaxial side
+    const zeroABA = [];     // y-axis contact angle based on zero mL of nitrogen for abaxial side
+    const twoADA = [];      // y-axis contact angle based on two mL of nitrogen for adaxial side
+    const twoABA = [];      // y-axis contact angle based on two mL of nitrogen for abaxial side
+    const fourADA = [];     // y-axis contact angle based on four mL of nitrogen for adaxial side
+    const fourABA = [];     // y-axis contact angle based on four mL of nitrogen for abaxial side
+    const eightADA = [];    // y-axis contact angle based on eight mL of nitrogen for adaxial side
+    const eightABA = [];    // y-axis contact angle based on eight mL of nitrogen for abaxial side
+    const sixteenADA = [];  // y-axis contact angle based on sixteen mL of nitrogen for adaxial side
+    const sixteenABA = [];  // y-axis contact angle based on sixteen mL of nitrogen for abaxial side
 
-    const xTrials = [];
-    const zeroADA = [];
-    const zeroABA = [];
-    const twoADA = [];
-    const twoABA = [];
-    const fourADA = [];
-    const fourABA = [];
-    const eightADA = [];
-    const eightABA = [];
-    const sixteenADA = [];
-    const sixteenABA = [];
     // \n - new line character
     // split ('\n') will separate table into an array of individual rows
     // slice(start, end) - return a new array starting at index start 
@@ -31,39 +27,39 @@ async function getData() {
     //console.log(table);
 
     table.forEach(row => {
-        const columns = row.split(','); // split each row on the commas
-        const trial  = columns[0];       // assign year value
-        xTrials.push(trial);              // push year value into xYears array
+        const columns = row.split(',');   // split each row on the commas
+        const trial  = columns[0];        // assign trial value
+        xTrials.push(trial);              // push trial value into xTrials array
         
-        const zADA = parseFloat(columns[1]);    // assign temp values
-        zeroADA.push(zADA + 14);         // push temp values + 14 to store mean temp values
+        const zADA = parseFloat(columns[1]);    // zero mL of nitrogen for adaxial side angle values
+        zeroADA.push(zADA);                     // push zADA (angle) values for zeroADA
 
-        const zABA = parseFloat(columns[2]);    // n. hemi. temp deviation values
-        zeroABA.push(zABA + 14);         // push temp values + 14 to store mean temp values
+        const zABA = parseFloat(columns[2]);    // zero mL of nitrogen for abaxial side angle values
+        zeroABA.push(zABA + 14);                // push zABA (angle) values for zeroABA
         
-        const tADA = parseFloat(columns[3]);    // s. hemi. temp deviation values 
-        twoADA.push(tADA + 14);         // push temp values + 14 to store mean temp values
+        const tADA = parseFloat(columns[3]);    // two mL of nitrogen for adaxial side angle values
+        twoADA.push(tADA + 14);                 // push tADA (angle) values for twoADA
 
-        const tABA = parseFloat(columns[4]);    // s. hemi. temp deviation values 
-        twoABA.push(tABA + 14);         // push temp values + 14 to store mean temp values
+        const tABA = parseFloat(columns[4]);    // two mL of nitrogen for abaxial side angle values
+        twoABA.push(tABA + 14);                 // push tABA (angle) values for twoABA
 
-        const fADA = parseFloat(columns[5]);    // s. hemi. temp deviation values 
-        fourADA.push(fADA + 14);         // push temp values + 14 to store mean temp values
+        const fADA = parseFloat(columns[5]);    // four mL of nitrogen for adaxial side angle values
+        fourADA.push(fADA + 14);                // push fADA (angle) values for fourADA
 
-        const fABA = parseFloat(columns[6]);    // s. hemi. temp deviation values 
-        fourABA.push(fABA + 14);         // push temp values + 14 to store mean temp values
+        const fABA = parseFloat(columns[6]);    // four mL of nitrogen for abaxial side angle values
+        fourABA.push(fABA + 14);                // push fABA (angle) values for fourABA
 
-        const eADA = parseFloat(columns[7]);    // s. hemi. temp deviation values 
-        eightADA.push(eADA + 14);         // push temp values + 14 to store mean temp values
+        const eADA = parseFloat(columns[7]);    // eight mL of nitrogen for adaxial side angle values
+        eightADA.push(eADA + 14);               // push eADA (angle) values for eightADA
 
-        const eABA = parseFloat(columns[8]);    // s. hemi. temp deviation values 
-        eightABA.push(eABA + 14);         // push temp values + 14 to store mean temp values
+        const eABA = parseFloat(columns[8]);    // eight mL of nitrogen for abaxial side angle values
+        eightABA.push(eABA + 14);               // push eABA (angle) values for eightABA
 
-        const sADA = parseFloat(columns[9]);    // s. hemi. temp deviation values 
-        sixteenADA.push(sADA + 14);         // push temp values + 14 to store mean temp values
+        const sADA = parseFloat(columns[9]);    // sixteen mL of nitrogen for adaxial side angle values
+        sixteenADA.push(sADA + 14);             // push sADA (angle) values for sixteenADA
 
-        const sABA = parseFloat(columns[10]);    // s. hemi. temp deviation values 
-        sixteenABA.push(sABA + 14);         // push temp values + 14 to store mean temp values
+        const sABA = parseFloat(columns[10]);   // sixteen mL of nitrogen for abaxial side angle values
+        sixteenABA.push(sABA + 14);             // push sABA (angle) values for sixteenABA
 
         //console.log(year, temp, nhTemp, shTemp);
 
@@ -100,26 +96,67 @@ async function createChart(){
                 label: `Contact Angle of Adaxial Leaf Side Based on 2mL of Nitrogen Fertilizer`,
                 data: data.twoADA,
                 fill: false,
-                backgroundColor: 'rgba(0, 102, 255, 0.2)',
-                borderColor: 'rgba(0, 102, 255, 1)',
+                backgroundColor: 'rgba(255, 20, 147, 0.2)',
+                borderColor: 'rgba(255, 20, 147, 1)',
                 borderWidth: 1
                 },
                 {
                 label: `Contact Angle of Abaxial Leaf Side Based on 2mL of Nitrogen Fertilizer`,
                 data: data.twoABA,
                 fill: false,
-                backgroundColor: 'rgba(0, 153, 51, 0.2)',
-                borderColor: 'rgba(0, 153, 51, 1)',
+                backgroundColor: 'rgba(225, 228, 181, 0.2)',
+                borderColor: 'rgba(225, 228, 181, 1)',
                 borderWidth: 1
                 },
                 {
                 label: `Contact Angle of Adaxial Leaf Side Based on 4mL of Nitrogen Fertilizer`,
                 data: data.fourADA,
                 fill: false,
-                backgroundColor: 'rgba(0, 153, 51, 0.2)',
-                borderColor: 'rgba(0, 153, 51, 1)',
+                backgroundColor: 'rgba(65, 105, 225, 0.2)',
+                borderColor: 'rgba(65, 105, 225, 1)',
                 borderWidth: 1
                 },
+                {
+                label: `Contact Angle of Abaxial Leaf Side Based on 4mL of Nitrogen Fertilizer`,
+                data: data.fourABA,
+                fill: false,
+                backgroundColor: 'rgba(0, 255, 255, 0.2)',
+                borderColor: 'rgba(0, 255, 255, 1)',
+                borderWidth: 1
+                },
+                {
+                label: `Contact Angle of Adaxial Leaf Side Based on 8mL of Nitrogen Fertilizer`,
+                data: data.eightADA,
+                fill: false,
+                backgroundColor: 'rgba(25, 25, 112, 0.2)',
+                borderColor: 'rgba(25, 25, 112, 1)',
+                borderWidth: 1
+                },
+                {
+                label: `Contact Angle of Abaxial Leaf Side Based on 8mL of Nitrogen Fertilizer`,
+                data: data.eightABA,
+                fill: false,
+                backgroundColor: 'rgba(148, 0, 211, 0.2)',
+                borderColor: 'rgba(148, 0, 211, 1)',
+                borderWidth: 1
+                },
+                {
+                label: `Contact Angle of Adaxial Leaf Side Based on 16mL of Nitrogen Fertilizer`,
+                data: data.sixteenADA,
+                fill: false,
+                backgroundColor: 'rgba(105, 105, 105, 0.2)',
+                borderColor: 'rgba(105, 105, 105, 1)',
+                borderWidth: 1
+                },
+                {
+                label: `Contact Angle of Abaxial Leaf Side Based on 16mL of Nitrogen Fertilizer`,
+                data: data.sixteenABA,
+                fill: false,
+                backgroundColor: 'rgba(0, 128, 128, 0.2)',
+                borderColor: 'rgba(0, 128, 128, 1)',
+                borderWidth: 1
+                },
+                
             ]
         },
         options: {
@@ -128,7 +165,7 @@ async function createChart(){
                 x: {
                     title: {
                         display: true,
-                        text: 'Year',   // x-axis title
+                        text: 'Trials',   // x-axis title
                         font: {         // font properties
                             size: 20
                         },
@@ -136,7 +173,7 @@ async function createChart(){
                     ticks: {
                         callback: function(val, index){
                             // Labeling of tick marks can be controlled by code and font size
-                            return index % 5 === 0 ? this.getLabelForValue(val) : '';
+                            return index % 1 === 0 ? this.getLabelForValue(val) : '';
                         },
                         font: {
                             size: 16
@@ -146,13 +183,13 @@ async function createChart(){
                 y: {
                     title: {
                         display: true,
-                        text: 'Global Mean Temperatures (°C)',
+                        text: 'Angle Values for Each Trial (°)',
                         font: {
                             size: 20
                         },
                     },
                     ticks: {
-                        maxTicksLimit: data.zeroADA.length/10,    // limit # of ticks
+                        maxTicksLimit: data.zeroADA.length,    // limit # of ticks
                         font: {
                             size: 12
                         }
@@ -162,7 +199,7 @@ async function createChart(){
             plugins: {               // Display options
                 title: {
                     display: true, 
-                    text: 'Global Mean Temperature vs. Year (since 1880)',
+                    text: 'Contact Angle of Adaxial and Abaxial Leaf  vs. Levels of Nitrogen Fertilizer (mL)',
                     font: {
                         size: 24
                     },
