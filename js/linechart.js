@@ -3,7 +3,7 @@
 */
 
 async function getData() {
-    const response = await fetch('../data/global-mean-temp.csv'); //.. moves up 1 folder
+    const response = await fetch('../data/research-data.csv'); //.. moves up 1 folder
     const data = await response.text();     // CSV is in TEXT format
     console.log(data); 
 
@@ -12,6 +12,17 @@ async function getData() {
     const yNHtemps = []; // y-axis NJ temp values
     const ySHtemps = []; // y-axis SH temp values
 
+    const xTrials = [];
+    const zeroADA = [];
+    const zeroABA = [];
+    const twoADA = [];
+    const twoABA = [];
+    const fourADA = [];
+    const fourABA = [];
+    const eightADA = [];
+    const eightABA = [];
+    const sixteenADA = [];
+    const sixteenABA = [];
     // \n - new line character
     // split ('\n') will separate table into an array of individual rows
     // slice(start, end) - return a new array starting at index start 
@@ -21,23 +32,43 @@ async function getData() {
 
     table.forEach(row => {
         const columns = row.split(','); // split each row on the commas
-        const year  = columns[0];       // assign year value
-        xYears.push(year);              // push year value into xYears array
+        const trial  = columns[0];       // assign year value
+        xTrials.push(trial);              // push year value into xYears array
         
-        const temp = parseFloat(columns[1]);    // assign temp values
-        yTemps.push(temp + 14);         // push temp values + 14 to store mean temp values
+        const zADA = parseFloat(columns[1]);    // assign temp values
+        zeroADA.push(zADA + 14);         // push temp values + 14 to store mean temp values
 
-
-        const nhTemp = parseFloat(columns[2]);    // n. hemi. temp deviation values
-        yNHtemps.push(nhTemp + 14);         // push temp values + 14 to store mean temp values
+        const zABA = parseFloat(columns[2]);    // n. hemi. temp deviation values
+        zeroABA.push(zABA + 14);         // push temp values + 14 to store mean temp values
         
-        const shTemp = parseFloat(columns[3]);    // s. hemi. temp deviation values 
-        ySHtemps.push(shTemp + 14);         // push temp values + 14 to store mean temp values
+        const tADA = parseFloat(columns[3]);    // s. hemi. temp deviation values 
+        twoADA.push(tADA + 14);         // push temp values + 14 to store mean temp values
+
+        const tABA = parseFloat(columns[4]);    // s. hemi. temp deviation values 
+        twoABA.push(tABA + 14);         // push temp values + 14 to store mean temp values
+
+        const fADA = parseFloat(columns[5]);    // s. hemi. temp deviation values 
+        fourADA.push(fADA + 14);         // push temp values + 14 to store mean temp values
+
+        const fABA = parseFloat(columns[6]);    // s. hemi. temp deviation values 
+        fourABA.push(fABA + 14);         // push temp values + 14 to store mean temp values
+
+        const eADA = parseFloat(columns[7]);    // s. hemi. temp deviation values 
+        eightADA.push(eADA + 14);         // push temp values + 14 to store mean temp values
+
+        const eABA = parseFloat(columns[8]);    // s. hemi. temp deviation values 
+        eightABA.push(eABA + 14);         // push temp values + 14 to store mean temp values
+
+        const sADA = parseFloat(columns[9]);    // s. hemi. temp deviation values 
+        sixteenADA.push(sADA + 14);         // push temp values + 14 to store mean temp values
+
+        const sABA = parseFloat(columns[10]);    // s. hemi. temp deviation values 
+        sixteenABA.push(sABA + 14);         // push temp values + 14 to store mean temp values
 
         //console.log(year, temp, nhTemp, shTemp);
 
     });
-    return{xYears, yTemps, yNHtemps, ySHtemps}
+    return{xTrials, zeroADA, zeroABA, twoADA, twoABA, fourADA, fourABA, eightADA, eightABA, sixteenADA, sixteenABA}
 }
 
 async function createChart(){
@@ -47,32 +78,48 @@ async function createChart(){
     const myChart = new Chart(ctx, {
         type: 'line', 
         data: {
-            labels: data.xYears,
+            labels: data.xTrials,
             datasets: [
                 {
-                label: `Combine Global Land-Surface Air and Sea-Surface Water Temperature in ${degSym}C`,
-                data: data.yTemps,
+                label: `Contact Angle of Adaxial Leaf Side with no Nitrogen Fertilizer`,
+                data: data.zeroADA,
                 fill: false,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
                 },
                 {
-                label: `Combined N.H. Land-Surface Air and Sea-Surface Water Temperature in ${degSym}C`,
-                data: data.yNHtemps,
+                label: `Contact Angle of Abaxial Leaf Side Based with no Nitrogen Fertilizer`,
+                data: data.zeroABA,
                 fill: false,
                 backgroundColor: 'rgba(0, 102, 255, 0.2)',
                 borderColor: 'rgba(0, 102, 255, 1)',
                 borderWidth: 1
                 },
                 {
-                label: `Combined S.H. Land-Surface Air and Sea-Surface Water Temperature in ${degSym}C`,
-                data: data.ySHtemps,
+                label: `Contact Angle of Adaxial Leaf Side Based on 2mL of Nitrogen Fertilizer`,
+                data: data.twoADA,
+                fill: false,
+                backgroundColor: 'rgba(0, 102, 255, 0.2)',
+                borderColor: 'rgba(0, 102, 255, 1)',
+                borderWidth: 1
+                },
+                {
+                label: `Contact Angle of Abaxial Leaf Side Based on 2mL of Nitrogen Fertilizer`,
+                data: data.twoABA,
                 fill: false,
                 backgroundColor: 'rgba(0, 153, 51, 0.2)',
                 borderColor: 'rgba(0, 153, 51, 1)',
                 borderWidth: 1
-                }
+                },
+                {
+                label: `Contact Angle of Adaxial Leaf Side Based on 4mL of Nitrogen Fertilizer`,
+                data: data.fourADA,
+                fill: false,
+                backgroundColor: 'rgba(0, 153, 51, 0.2)',
+                borderColor: 'rgba(0, 153, 51, 1)',
+                borderWidth: 1
+                },
             ]
         },
         options: {
@@ -105,7 +152,7 @@ async function createChart(){
                         },
                     },
                     ticks: {
-                        maxTicksLimit: data.yTemps.length/10,    // limit # of ticks
+                        maxTicksLimit: data.zeroADA.length/10,    // limit # of ticks
                         font: {
                             size: 12
                         }
